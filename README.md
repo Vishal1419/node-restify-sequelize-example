@@ -1,1 +1,1 @@
-# node-restify-sequelite-example
+# node-restify-sequelize-example
