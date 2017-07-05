@@ -27,19 +27,52 @@ module.exports = function (server, User) {
         newUser
             .save()
             .then(function(data) {
-                res.send(data);
+                return res.send(data);
             })
             .catch(function(err) {
-                res.send(err);
+                return res.send(err);
             });
     });
 
-    server.put('/', function(req, res, next) {
-        res.send('made changes to some Data');
+    server.put('/:id', utility.validateRequest(validationSchema.user), function(req, res, next) {
+
+        var id = req.params.id;
+        var lastname = req.body.lastName;
+        var firstname = req.body.firstName;
+
+        User.findById(id).then(function(user){
+            if(user) {
+                user.LastName = lastname;
+                user.FirstName = firstname
+
+                user.save()
+                    .then(function(data) {
+                        return res.send(data)
+                    })
+                    .catch(function(err){
+                        return res.send(err);
+                    });
+            } else {
+                return res.send("Invalid id");
+            }
+        });
+
     });
 
-    server.del('/', function(req, res, next) {
-        res.send('Data deleted');
+    server.del('/:id', function(req, res, next) {
+
+        var id = req.params.id;
+
+        User.findById(id).then(function(user){
+
+            user.destroy().then(function(data) {
+                return res.send(data);
+            }).catch(function(err) {
+                return res.send(err);
+            });
+
+        });
+
     });
 
     return this;

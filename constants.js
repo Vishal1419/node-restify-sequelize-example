@@ -9,4 +9,4 @@ module.exports = {
         LASTNAME_REQUIRED: "lastName is required",
         FIRSTNAME_INVALID_DATA_TYPE: "firstName should be string"
     }
-}
+};
