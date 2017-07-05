@@ -1,15 +1,19 @@
 var utility = require('../utility');
 var validationSchema = require('../validation/validation_schema');
+var indexController = require('../controllers/indexController');
 
 module.exports = function (server, User) {
 
     server.get('/', function(req, res, next) {
-        User.findAll({}).then(function (data) {
-            return res.send(data);
-        })
-        .catch(function(err){
-            return res.send(err);
+        
+        indexController.getAllUsers(User, function(err, result){
+            if(err) {
+                return res.send(err);
+            } else {
+                return res.send(result);
+            }
         });
+
     });
 
     server.post('/', utility.validateRequest(validationSchema.user), function(req, res, next) {
@@ -17,21 +21,18 @@ module.exports = function (server, User) {
         var lastname = req.body.lastName;
         var firstname = req.body.firstName;
 
-        var user = {
+        var data = {
             LastName : lastname,
             FirstName : firstname
         }
 
-        var newUser = User.build(user);
-
-        newUser
-            .save()
-            .then(function(data) {
-                return res.send(data);
-            })
-            .catch(function(err) {
+        indexController.saveNewUser(User, data, function(err, result){
+            if(err) {
                 return res.send(err);
-            });
+            } else {
+                return res.send(result);
+            }
+        });
     });
 
     server.put('/:id', utility.validateRequest(validationSchema.user), function(req, res, next) {
@@ -40,20 +41,16 @@ module.exports = function (server, User) {
         var lastname = req.body.lastName;
         var firstname = req.body.firstName;
 
-        User.findById(id).then(function(user){
-            if(user) {
-                user.LastName = lastname;
-                user.FirstName = firstname
+        var newData = {
+            LastName: lastname,
+            FirstName: firstname
+        }
 
-                user.save()
-                    .then(function(data) {
-                        return res.send(data)
-                    })
-                    .catch(function(err){
-                        return res.send(err);
-                    });
+        indexController.updateUser(User, id, newData, function(err, result) {
+            if(err) {
+                return res.send(err);
             } else {
-                return res.send("Invalid id");
+                return res.send(result);
             }
         });
 
@@ -63,14 +60,12 @@ module.exports = function (server, User) {
 
         var id = req.params.id;
 
-        User.findById(id).then(function(user){
-
-            user.destroy().then(function(data) {
-                return res.send(data);
-            }).catch(function(err) {
+        indexController.deleteUser(User, id, function(err, response) {
+            if(err) {
                 return res.send(err);
-            });
-
+            } else {
+                return res.send(result);
+            }
         });
 
     });

@@ -1,5 +1,5 @@
 var validator = require('isvalid');
-var ExampleResponse = require('./exampleResponse');
+var ExampleResponse = require('./validation/exampleResponse');
 
 var ApplicationUtils = function (){};
 
