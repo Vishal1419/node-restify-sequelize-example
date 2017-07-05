@@ -1,5 +1,6 @@
 function indexController() {};
 
+//function to get all 
 indexController.getAllUsers = function(User, callback) {
     
     User.findAll({}).then(function (data) {
