@@ -1,5 +1,5 @@
 var utility = require('../utility');
-var validationSchema = require('../validation_schema');
+var validationSchema = require('../validation/validation_schema');
 
 module.exports = function (server, User) {
 
