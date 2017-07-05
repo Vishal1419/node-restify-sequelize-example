@@ -8,7 +8,7 @@ indexController.getAllUsers = function(User, callback) {
         .catch(function(err){
             callback(err, null);
         });
-        
+
 }
 
 indexController.saveNewUser = function(User, data, callback) {
@@ -51,11 +51,15 @@ indexController.deleteUser = function(User, id, callback) {
 
     User.findById(id).then(function(user){
 
-        user.destroy().then(function(data) {
-            callback(null, data);
-        }).catch(function(err) {
-            callback(err, null);
-        });
+        if(user) {
+            user.destroy().then(function(data) {
+                callback(null, data);
+            }).catch(function(err) {
+                callback(err, null);
+            });
+        } else {
+            callback("invalid id", null);
+        }
 
     });
 

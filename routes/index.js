@@ -60,7 +60,7 @@ module.exports = function (server, User) {
 
         var id = req.params.id;
 
-        indexController.deleteUser(User, id, function(err, response) {
+        indexController.deleteUser(User, id, function(err, result) {
             if(err) {
                 return res.send(err);
             } else {
