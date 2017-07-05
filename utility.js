@@ -1,8 +1,13 @@
+/*
+ * copied from Vcc project created by ravi modha @ Pixometry Infosoft
+*/
+
 var validator = require('isvalid');
 var ExampleResponse = require('./validation/exampleResponse');
 
 var ApplicationUtils = function (){};
 
+//This method acts as a validation bridge between routes and validation_schema
 ApplicationUtils.validateRequest = function(schema,errorCallback){
     return function validate(request,response,next){
         validator((request.body || request.params),

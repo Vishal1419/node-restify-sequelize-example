@@ -6,9 +6,9 @@ Db.getDbInstance = function() {
 
     //Setting up the config
     var sequelize = new Sequelize('vishal_test_db', 'vishal', '12345678', {
-        host: "192.168.100.204",
-        port: 3306,
-        dialect: 'mysql'
+        host: "192.168.100.204", //on this ip our database server is available
+        port: 3306, //I don't know but it does not work on other ports
+        dialect: 'mysql' //we should pass the database that we are using in dialect
     });
 
     //Checking connection status

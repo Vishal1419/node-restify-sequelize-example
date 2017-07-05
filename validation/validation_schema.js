@@ -1,3 +1,5 @@
+//All the validation logic in this project is specified in this file as javascript objects. Thanks to isvalid npm package.
+
 var constants = require('./constants');
 
 module.exports = {

@@ -1,13 +1,15 @@
 /**
- * Created by ravimodha on 15/08/16.
+ * Copied from VCC by ravimodha @ Pixometry Infosoft.
  */
 
+//This function acts like constructor
 function exampleResponse(response){
     this.statusCode = 1002;
     this.body = [];
     this.response = response;
 }
 
+//prototype means a virtually automatically created function from which this function inherits
 exampleResponse.prototype.setStatusCode = function (statusCode) {
     this.statusCode = statusCode;
     return this;

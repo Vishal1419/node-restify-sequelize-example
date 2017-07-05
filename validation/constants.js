@@ -1,4 +1,5 @@
 module.exports = {
+    //these constant error codes and error messages are used to avoid common mistakes and typos.
     ERROR_CODES: {
         INVALID_DATA_TYPE: 1000,
         REQUIRED_FIELD:1001,
