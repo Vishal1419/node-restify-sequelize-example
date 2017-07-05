@@ -10,4 +10,4 @@ module.exports = function(sequelize) {
 
     return Users;
 
-}
+};
