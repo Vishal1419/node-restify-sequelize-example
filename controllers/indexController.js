@@ -4,7 +4,7 @@ var constants = require('../validation/constants');
 module.exports = {
 
     //function to get all users from database 
-    getAllUsers : function(req, res) {
+    getAllUsers : function(req, res, User) {
         
         //findAll will return all the users
         User.findAll({}).then(function (data) {
@@ -17,26 +17,50 @@ module.exports = {
     },
 
     //function to save new user to database
-    saveNewUser : function(req, res) {
+    saveNewUser : function(req, res, User) {
 
-        var newUser = User.build({
-            LastName: req.body.lastName,
-            FirstName: req.body.firstName
+        var fullname_new = req.body.lastName + " " + req.body.firstName;
+
+        User.findAll({}).then(function(users) {
+          
+            var userAlreadyExists = false;
+            users.forEach(function(user) {
+                var fullname = user.LastName + " " + user.FirstName;
+                if(fullname === fullname_new) {
+                    //user already exists.
+                    console.log("..........");
+                    userAlreadyExists = true;
+                    var exampleResponse = new ExampleResponse(res);
+                    return exampleResponse.setStatusCode(constants.ERROR_CODES.DUPLICATE_RECORD)
+                                          .setResponseBody({"message": constants.ERROR_MSGS.DUPLICATE_USER})
+                                          .send();
+                }
+            }, this);
+
+            if(!userAlreadyExists) {
+
+                var newUser = User.build({
+                    LastName: req.body.lastName,
+                    FirstName: req.body.firstName
+                });
+
+                newUser
+                    .save()
+                    .then(function(data) {
+                        return res.send(result);
+                    })
+                    .catch(function(err) {
+                        return res.send(err);
+                    });
+
+            }
+
         });
-
-        newUser
-            .save()
-            .then(function(data) {
-                return res.send(result);
-            })
-            .catch(function(err) {
-                return res.send(err);
-            });
 
     },
 
     //function to update existing user by id in database
-    updateUser : function(req, res) {
+    updateUser : function(req, res, User) {
 
         var id = req.params.id;
 
@@ -64,7 +88,7 @@ module.exports = {
     },
 
     //function to delete user by id from database
-    deleteUser : function(User, id, callback) {
+    deleteUser : function(req, res, User) {
 
         var id  = req.params.id;
 
