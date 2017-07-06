@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7baa2efe-41a0-4d16-849f-44c3e77d55c9" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/npm-debug.log" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/db.js" afterPath="$PROJECT_DIR$/config/db.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/indexController.js" afterPath="$PROJECT_DIR$/controllers/indexController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/users.js" afterPath="$PROJECT_DIR$/models/users.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/index.js" afterPath="$PROJECT_DIR$/routes/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utility.js" afterPath="$PROJECT_DIR$/utility.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/validation/constants.js" afterPath="$PROJECT_DIR$/validation/constants.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/validation/exampleResponse.js" afterPath="$PROJECT_DIR$/validation/exampleResponse.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/validation/validation_schema.js" afterPath="$PROJECT_DIR$/validation/validation_schema.js" />
-    </list>
+    <list default="true" id="7baa2efe-41a0-4d16-849f-44c3e77d55c9" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
